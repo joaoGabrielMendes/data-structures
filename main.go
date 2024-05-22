@@ -1,6 +1,8 @@
 package main
 
-import "datastructures/array"
+import (
+	"datastructures/array"
+)
 
 func main () {
   var a array.Array = *array.NewArray();
@@ -19,6 +21,11 @@ func main () {
 
   println("Tirando primeiro elemento")
   a.Shift();
+  println(a.String())
+  println()
+
+  println("Inserindo no comeco [0, 1]")
+  println("(size: ", a.Unshift(0, 1), ")")
   println(a.String())
   println()
 }

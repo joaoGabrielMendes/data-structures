@@ -54,6 +54,33 @@ func (a *Array) Shift() (interface{}, error) {
   return first_element, nil
 }
 
+func (a *Array) Unshift(elements ... interface{}) int {
+  numNewElements := len(elements)
+  newSize := a.size + numNewElements
+
+  if newSize > a.capacity {
+    newCapacity := a.capacity
+    for newCapacity < newSize {
+      newCapacity *= 2
+    }
+
+    a.resize(newCapacity)
+  } 
+  // Shift Right
+  for i := a.size; i >= 0; i -- {
+    a.elements[i + numNewElements] = a.elements[i] 
+  }
+
+  // Insert elements in the start
+  for i, element := range elements {
+    a.elements[i] = element
+  }
+
+  a.size = newSize
+  return a.size - 1
+
+} 
+
 func (a *Array) resize(newCapacity int) {
   newElements := make([]interface{}, newCapacity)
   copy(newElements, a.elements)

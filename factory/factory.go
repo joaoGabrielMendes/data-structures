@@ -4,7 +4,7 @@ type Array interface {
         Push(element interface{}) int                                                                           // Add element on top ✅
         Pop() (interface{}, error)                                                                              // Remove the last element ✅
         Shift() (interface{}, error)                                                                            // Remove the first element ✅
-        Unshift(elements ...interface{}) int                                                                    // Add elements at the first place 
+        Unshift(elements ...interface{}) int                                                                    // Add elements at the first place ✅
         Concat(arrays ...Array) Array                                                                           // Concatenate arrays
         Slice(start, end int) Array                                                                             // Return a shallow copy of a portion of an array
         Splice(start, deleteCount int, items ...interface{}) Array                                              // Add/remove elements from the array
