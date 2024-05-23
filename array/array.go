@@ -79,6 +79,34 @@ func (a *Array) Unshift(elements ... interface{}) int {
   a.size = newSize
   return a.size - 1
 
+}
+
+func (a *Array) Concat(arrays ... *Array) *Array {
+  // calc size of original array 
+  totalSize := a.size
+
+  // calc size of news arrays
+  for _, arr := range arrays {
+    totalSize += arr.size
+  }
+
+  // Create a new arrays with the new capacity
+  result := &Array{
+    elements: make([]interface{}, totalSize),
+    size: totalSize,
+    capacity: totalSize * 2,
+  }
+
+  // Copy the elements of the orinal arrays
+  copy(result.elements, a.elements[:a.size])
+
+  // Copy the elements of the new array(S)
+  offset := a.size
+  for _, arr := range arrays {
+    copy(result.elements[offset:], arr.elements[:arr.size])
+    offset += arr.size
+  }
+  return result
 } 
 
 func (a *Array) resize(newCapacity int) {
