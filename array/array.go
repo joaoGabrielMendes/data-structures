@@ -107,7 +107,47 @@ func (a *Array) Concat(arrays ... *Array) *Array {
     offset += arr.size
   }
   return result
-} 
+}
+
+func (a *Array) Slice(start, end int ) *Array {
+
+  if start < 0 {
+    start = 0
+  }
+
+  if end > a.size {
+    end = a.size
+  }
+
+  if start > end && end != -1 {
+    start = end
+  }
+
+  var result *Array
+
+  if end == -1 {
+    result = &Array{
+    elements: make([]interface{}, a.size - start),
+    size: a.size - start,
+    capacity: a.size-start,
+    }
+
+    copy(result.elements, a.elements[start:a.size])
+
+  } else {
+    result = &Array{
+    elements: make([]interface{}, end-start),
+    size: end-start,
+    capacity: end-start,
+    }
+
+    copy(result.elements, a.elements[start:end])
+
+    return result
+  }
+
+  return result
+ }
 
 func (a *Array) resize(newCapacity int) {
   newElements := make([]interface{}, newCapacity)

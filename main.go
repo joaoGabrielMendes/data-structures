@@ -46,4 +46,10 @@ func main () {
   println("B: ",b.String(), "C: ", c.String())
  
   println("Concat: ", concatBC.String())
+
+  // Slice Test
+  slicedArray := *b.Slice(0, 2)
+  println("Array slicado b = [1,2,3] -> slice(0, 2)")
+  println(slicedArray.String())
+
 }
