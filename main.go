@@ -66,4 +66,11 @@ func main () {
   })
 
   println(newArr.String()) // Saída: [2 4 6]
+  println()
+
+  // For each test
+  arr.ForEach(func(element interface{}) {
+    println("element: ")
+    println(element.(int) * 2)
+  })
 }

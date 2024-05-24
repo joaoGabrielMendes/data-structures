@@ -158,6 +158,12 @@ func (a *Array) Map (f func(interface{}) interface{} ) *Array {
   return newArray 
 }
 
+func (a *Array) ForEach (f func(interface{}) ) {
+for i := 0; i < a.size; i ++ {
+    f(a.elements[i])
+  }
+}
+
 func (a *Array) resize(newCapacity int) {
   newElements := make([]interface{}, newCapacity)
   copy(newElements, a.elements)
