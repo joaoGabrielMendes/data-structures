@@ -46,10 +46,24 @@ func main () {
   println("B: ",b.String(), "C: ", c.String())
  
   println("Concat: ", concatBC.String())
+  println()
 
   // Slice Test
   slicedArray := *b.Slice(0, 2)
   println("Array slicado b = [1,2,3] -> slice(0, 2)")
   println(slicedArray.String())
+  println()
 
+  // Map test
+  arr := *array.NewArray()
+  arr.Push(1)
+  arr.Push(2)
+  arr.Push(3)
+
+  // Aplicar uma função que multiplica cada elemento por 2
+  newArr := arr.Map(func(element interface{}) interface{} {
+    return element.(int) * 2
+  })
+
+  println(newArr.String()) // Saída: [2 4 6]
 }

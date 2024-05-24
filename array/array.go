@@ -149,6 +149,15 @@ func (a *Array) Slice(start, end int ) *Array {
   return result
  }
 
+func (a *Array) Map (f func(interface{}) interface{} ) *Array {
+  newArray := NewArray()
+  for i := 0; i < a.size; i ++ {
+    newElement := f(a.elements[i])
+    newArray.Push(newElement)
+  }
+  return newArray 
+}
+
 func (a *Array) resize(newCapacity int) {
   newElements := make([]interface{}, newCapacity)
   copy(newElements, a.elements)
