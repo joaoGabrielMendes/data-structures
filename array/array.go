@@ -149,6 +149,39 @@ func (a *Array) Slice(start, end int ) *Array {
   return result
  }
 
+func (a *Array) Splice (start, deleteCount int , arr *Array) (*Array, error) {
+  if start < 0 || start >= a.size{
+    return nil, errors.New("Start index out of range")
+  }
+
+  if deleteCount < 0 || start + deleteCount > a.size {
+    return nil, errors.New("Delete count out of the range")
+  }
+
+  newArray := NewArray()
+
+  // Remove elements
+  first := a.Slice(0, start + 1)
+  final := a.Slice(start + deleteCount + 1, -1)
+
+  // Add elements
+  if arr.size > 0 {
+    if a.size + arr.size > a.capacity {
+      a.resize(a.size + arr.size)
+    }
+     // final array concatened
+    newArray =  newArray.Concat(first, arr,final)
+  } else {
+    newArray =  newArray.Concat(first, final)
+  }
+
+  a.elements = newArray.elements
+  a.size = newArray.size
+  a.capacity = newArray.capacity
+
+  return newArray, nil
+}
+
 func (a *Array) Map (f func(interface{}) interface{} ) *Array {
   newArray := NewArray()
   for i := 0; i < a.size; i ++ {

@@ -73,4 +73,17 @@ func main () {
     println("element: ")
     println(element.(int) * 2)
   })
+
+  // Splice
+
+  arr.Push(4)
+  arr.Push(5)
+  arr.Push(6)
+
+  arrayGod := array.NewArray()
+  arrayGod.Push(30); arrayGod.Push(40)
+  println("Splice(1, 2, (valores 30 e 40)) em ", arr.String())
+  // 1, 2, 3, 4, 5, 6
+  arr.Splice(1, 2, arrayGod)
+  println(arr.String())
 }

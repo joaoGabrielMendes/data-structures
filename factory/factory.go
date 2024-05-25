@@ -8,7 +8,7 @@ type Array interface {
         Concat(arrays ...Array) Array                                                                           // Concatenate arrays ✅
         Slice(start, end int) Array                                                                             // Return a shallow copy of a portion of an array ✅
         Splice(start, deleteCount int, items ...interface{}) Array                                              // Add/remove elements from the array
-        ForEach(callback func(element interface{}, index int))                                                  // Execute a function for each element
+        ForEach(callback func(element interface{}, index int))                                                  // Execute a function for each element ✅
         Map(callback func(element interface{}, index int) interface{}) Array                                    // Create a new array with the results of calling a function for each element ✅
         Filter(callback func(element interface{}, index int) bool) Array                                        // Create a new array with all elements that pass the test
         Reduce(callback func(acc, element interface{}, index int) interface{}, initial interface{}) interface{} // Apply a function to reduce the array to a single value
